@@ -1,78 +1,49 @@
-AstroTask
+# Astro Task
 
 AstroTask is a simple web-based to-do list application built with Flask and Tailwind CSS. It allows users to add, complete, view, and delete tasks.
 
-Features
+## Features
 
-Add tasks
+- **Add tasks**
+- **Mark tasks as completed**
+- **View all tasks**
+- **Delete tasks**
 
-Mark tasks as completed
-
-View all tasks
-
-Delete tasks
-
-Installation
-
-Prerequisites
+## Prerequisites
 
 Ensure you have Python installed on your system. If not, download and install it from python.org.
 
-1. Clone the Repository
+## Installation
 
-git clone https://github.com/yourusername/astro-task.git
-cd astro-task
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/MylesJMoore/AstroTask.git
+   cd astrotask
+   ```
+2. Create and activate a virtual environment:
+   python -m venv venv
+   source venv/bin/activate # On Windows use `venv\Scripts\activate`
+3. Install the required packages:
+   pip install -r requirements.txt
+4. Run the application:
+   python app.py
+5. Visit http://127.0.0.1:5000/ in your browser.
 
-2. Create and Activate a Virtual Environment (Optional but Recommended)
+## Usage
 
-python -m venv venv
+- Add a Task: Enter a task in the input box and submit.
+- Mark as Completed: Click the "Complete" button.
+- Delete a Task: Click "Delete" to remove it.
 
-# Activate the virtual environment:
+## Contributing
 
-# Windows:
+1. Fork the repository.
+2. Create a new branch (git checkout -b feature-name).
+3. Commit your changes (git commit -am 'Add new feature').
+4. Push to the branch (git push origin feature-name).
+5. Open a Pull Request.
 
-venv\Scripts\activate
-
-# Mac/Linux:
-
-source venv/bin/activate
-
-3. Install Dependencies
-
-pip install flask
-
-4. Run the Application
-
-python app.py
-
-You should see output like:
-
-- Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
-
-5. Open the Web App
-
-Go to http://127.0.0.1:5000/ in your browser.
-
-Usage
-
-Add a Task: Enter a task in the input box and submit.
-
-Mark as Completed: Click the "Complete" button.
-
-Delete a Task: Click "Delete" to remove it.
-
-Project Structure
-
-astro-task/
-│-- app.py # Main Flask application
-│-- tasks.json # Stores task data
-│-- templates/
-│ ├── index.html # Frontend UI (Tailwind CSS)
-│-- static/
-│ ├── styles.css # Custom CSS (if needed)
-
-License
-
-This project is licensed under the MIT License.
+## License
 
 Made by Myles Moore
+This project is licensed under the MIT License - see the LICENSE file for details.
