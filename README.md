@@ -2,6 +2,12 @@
 
 AstroTask is a simple web-based to-do list application built with Flask and Tailwind CSS. It allows users to add, complete, view, and delete tasks.
 
+## Screenshots
+
+### Task List Interface
+
+![Task List](screenshots/task_list_interface.png)
+
 ## Features
 
 - **Add tasks**

@@ -4,6 +4,11 @@
             "id": 2,
             "text": "Finish Python project",
             "completed": true
+        },
+        {
+            "id": 2,
+            "text": "Start a new project!",
+            "completed": false
         }
     ]
 }
