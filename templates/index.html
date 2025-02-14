@@ -9,26 +9,69 @@
 <body class="bg-gray-100 flex justify-center items-center min-h-screen">
     <div class="bg-white p-6 rounded-lg shadow-md w-full max-w-md">
         <h1 class="text-2xl font-bold mb-4">AstroTask 🚀</h1>
-        <form action="/tasks" method="POST" class="flex mb-4">
-            <input type="text" name="title" placeholder="New task..." required
-                class="flex-grow p-2 border rounded-l-lg focus:outline-none">
-            <button type="submit" class="bg-blue-500 text-white p-2 rounded-r-lg hover:bg-blue-600">
-                Add
-            </button>
-        </form>
-        <ul>
-            {% for task in tasks %}
-            <li class="flex justify-between items-center p-2 border-b">
-                <span class="{% if task.completed %}line-through text-gray-500{% endif %}">
-                    {{ task.title }}
-                </span>
-                <div>
-                    <a href="/complete/{{ task.id }}" class="text-green-500 hover:underline">✔</a>
-                    <a href="/delete/{{ task.id }}" class="text-red-500 hover:underline ml-2">✖</a>
-                </div>
-            </li>
-            {% endfor %}
-        </ul>
+        <input id="taskInput" type="text" placeholder="New task..." required
+            class="w-full p-2 border rounded-lg focus:outline-none mb-4">
+        <button onclick="addTask()" class="w-full bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600">
+            Add Task
+        </button>
+        <ul id="taskList" class="mt-4"></ul>
     </div>
+
+    <script>
+        async function fetchTasks() {
+            const response = await fetch("/tasks");
+            const tasks = await response.json();
+            const taskList = document.getElementById("taskList");
+            taskList.innerHTML = "";
+
+            tasks.forEach(task => {
+                taskList.innerHTML += `
+                    <li class="flex justify-between items-center p-2 border-b">
+                        <span class="${task.completed ? 'line-through text-gray-500' : ''}">
+                            ${task.text}
+                        </span>
+                        <div>
+                            <button onclick="completeTask(${task.id})" class="text-green-500 hover:underline">✔</button>
+                            <button onclick="deleteTask(${task.id})" class="text-red-500 hover:underline ml-2">✖</button>
+                        </div>
+                    </li>
+                `;
+            });
+        }
+
+        async function addTask() {
+            const taskText = document.getElementById("taskInput").value;
+            if (!taskText) return alert("Enter a task!");
+
+            await fetch("/tasks", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ text: taskText })
+            });
+
+            document.getElementById("taskInput").value = "";
+            fetchTasks();
+        }
+
+        async function deleteTask(id) {
+            await fetch("/tasks", {
+                method: "DELETE",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ id: id })
+            });
+            fetchTasks();
+        }
+
+        async function completeTask(id) {
+            await fetch("/complete", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ id: id })
+            });
+            fetchTasks();
+        }
+
+        fetchTasks();
+    </script>
 </body>
 </html>

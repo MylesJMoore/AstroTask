@@ -1,14 +1,9 @@
 {
     "tasks": [
-      {
-        "id": 1,
-        "title": "Buy groceries",
-        "completed": false
-      },
-      {
-        "id": 2,
-        "title": "Finish Python project",
-        "completed": true
-      }
+        {
+            "id": 2,
+            "text": "Finish Python project",
+            "completed": true
+        }
     ]
-  }
+}
